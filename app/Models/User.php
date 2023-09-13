@@ -62,5 +62,9 @@ class User extends Authenticatable
         return 'email';
         
     }
+
+    public function test(){
+        return 'working good';
+    }
 }
  
