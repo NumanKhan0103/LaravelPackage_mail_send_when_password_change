@@ -6,10 +6,11 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use App\Trait\PasswordChangedNotificationTrait;
+use App\Contracts\PasswordChangedNotificationContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements PasswordChangedNotificationContract
 {
     use HasApiTokens, HasFactory, Notifiable, PasswordChangedNotificationTrait;
 

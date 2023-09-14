@@ -42,4 +42,27 @@ trait PasswordChangedNotificationTrait
     {
        return false;
     }
+
+    public function sendPasswordChangedNotification(): void
+    {
+        if(!$this->isPasswordChange())
+        {
+            return;
+        }
+        
+        // execute when password is changed
+
+        $mail = Mail::to($this->getRawOriginal($this->emailColumnName()));
+
+        if($this->shouldPasswordChangedNotificationMailBeQueued()){
+
+            $mail->send($this->passwordChangeNotificationMail());
+            
+            return;
+            
+        }
+        
+        // send mail  without queue 
+        $mail->send($model->passwordChangeNotificationMail());
+    }
 }
